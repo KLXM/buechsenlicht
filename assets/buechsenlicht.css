@@ -182,6 +182,30 @@
     color: var(--bl-forest);
 }
 
+.bl-app .bl-legal-details summary {
+    cursor: pointer;
+    color: var(--bl-forest);
+    font-weight: 600;
+}
+
+.bl-app .bl-legal-list dt {
+    color: var(--bl-forest);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    margin-top: 1rem;
+}
+
+.bl-app .bl-legal-list dt:first-child {
+    margin-top: 0;
+}
+
+.bl-app .bl-legal-list dd {
+    margin-left: 0;
+    color: #4a5850;
+}
+
 .bl-app .bl-subscribe-link {
     margin-top: .5rem;
 }

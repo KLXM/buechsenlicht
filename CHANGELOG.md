@@ -27,3 +27,8 @@
 - Klarstellung ergänzt (Datenquellen-Modal + README): Wo eine Landesverordnung eine Wildart nicht
   eigenständig regelt, gilt automatisch die Bundesjagdzeitenverordnung weiter - das ist geltendes
   Recht, keine Datenlücke, im Unterschied zu den 5 Ländern mit tatsächlicher Zweitquellen-Unsicherheit.
+- „Rechtliches & Datenschutz“-Bereich ergänzt (Kostenfreiheit, Haftungsausschluss, Datenstand als
+  benannter Wert `HuntingSeasons::RESEARCHED_AT`, Datenschutzhinweise zu Ortssuche und Kalender-Abo
+  - der Abo-Link enthält Ort/Wildart/Einstellungen offen in der URL und liegt nach dem Abonnieren
+  in der Kontrolle der jeweiligen Kalender-App/deren Cloud-Anbieter). Kurzhinweis dazu zusätzlich
+  direkt im Abo-Bereich.

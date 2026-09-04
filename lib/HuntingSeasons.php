@@ -5,15 +5,22 @@ namespace Buechsenlicht;
 /**
  * Jagdzeiten-Datenbasis für alle 16 deutschen Bundesländer.
  *
- * Wichtig: Dieses Werkzeug dient ausschließlich der Planung. Für Nordrhein-Westfalen sind die
- * Reh-Klassen wie vom Auftraggeber vorgegeben hinterlegt (Landesjagdzeitenverordnung NRW). Für alle
- * übrigen Länder werden mangels vollständiger Einzelrecherche je Bundesland die Basiswerte der
- * Bundesjagdzeitenverordnung (BJagdZV) hinterlegt und als solche gekennzeichnet - das Landesrecht
- * kann abweichende, meist großzügigere Zeiten festlegen. Die Daten müssen vor produktivem Einsatz
- * gegen die jeweils aktuelle Landesjagdzeitenverordnung geprüft werden (siehe "hinweis" je Land).
+ * Wichtig: Dieses Werkzeug dient ausschließlich der Planung, keine amtliche Rechtsauskunft. Alle
+ * 16 Bundesländer wurden einzeln gegen die jeweils aktuelle Landesverordnung recherchiert (siehe
+ * "source"/"sourceUrl"/"datenstand" je Land in data()); wo eine Wildart landesrechtlich nicht
+ * eigenständig geregelt ist, gilt ersatzweise die Bundesjagdzeitenverordnung (kein Datenfehler,
+ * sondern die tatsächlich geltende Rechtslage). Details und etwaige Vereinfachungen/Unsicherheiten
+ * je Bundesland stehen im jeweiligen "hinweis"-Feld.
  */
 class HuntingSeasons
 {
+    /**
+     * Datum, zu dem die Jagdzeiten-Datenbasis recherchiert/geprüft wurde (nicht zu verwechseln mit
+     * dem "datenstand" je Bundesland, der die Version der jeweiligen Verordnung angibt). Bei einer
+     * erneuten Prüfung/Aktualisierung der Daten hier anpassen.
+     */
+    public const RESEARCHED_AT = '2026-09-04';
+
     public const SPECIES_ORDER = [
         'Rehwild · alle Klassen',
         'Rehwild · Böcke',

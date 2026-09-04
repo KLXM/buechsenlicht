@@ -99,7 +99,21 @@ die zugehörige URL zum Kopieren. Kalender-Apps rufen diesen Link periodisch ern
 Zeitraum immer bei „heute“ beginnt, bleibt das Abo dauerhaft aktuell, ohne dass der Nutzer die Datei
 erneut herunterladen muss. Technisch ist das ein öffentlicher, zustandsloser API-Endpunkt
 (`rex-api-call=buechsenlicht_feed`, kein Login nötig) – alle nötigen Parameter (Ort, Koordinaten,
-Bundesland, Wildart, Büchsenlicht-Werte) stecken in der URL selbst.
+Bundesland, Wildart, Büchsenlicht-Werte) stecken in der URL selbst. Das ist zugleich der wichtigste
+Datenschutz-Punkt: Diese URL enthält Ort und Wildart offen lesbar und liegt nach dem Abonnieren in
+der Kontrolle der Kalender-App bzw. deren Cloud-Anbieter – erklärt der App selbst im Bereich
+„Rechtliches & Datenschutz“ (siehe unten).
+
+## Rechtliches & Datenschutz
+
+Am unteren Rand der App gibt es einen ausklappbaren Bereich „Rechtliches & Datenschutz“ mit:
+Kostenfreiheit/Freibleiben des Dienstes, Haftungsausschluss, dem Datenstand der Jagdzeiten-Recherche
+(`HuntingSeasons::RESEARCHED_AT`, getrennt vom `datenstand` je Bundesland, der die Version der
+jeweiligen Verordnung angibt) sowie separaten Datenschutzhinweisen zu Ortssuche und Kalender-Abo.
+Dieser Text ist als vernünftiger Standard formuliert, aber **keine Rechtsberatung** – bei
+produktivem Einsatz auf einer öffentlichen Website empfiehlt sich eine kurze Prüfung durch
+eine:n Jurist:in, insbesondere im Zusammenspiel mit der ohnehin vorhandenen
+Datenschutzerklärung/Impressum der Website.
 
 ## Jagdzeiten-Daten & Quellen
 

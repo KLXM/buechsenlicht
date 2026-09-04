@@ -23,6 +23,7 @@ class Widget
             'states' => self::exportStates(),
             'speciesOrder' => HuntingSeasons::SPECIES_ORDER,
             'stateNameMap' => self::exportStateNameMap(),
+            'researchedAt' => HuntingSeasons::RESEARCHED_AT,
             'i18n' => [
                 'legalNote' => 'Planungswerkzeug - keine amtliche Rechtsauskunft. Aktuelle Rechtslage und örtliche Anordnungen bitte eigenständig prüfen.',
             ],

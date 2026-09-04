@@ -192,6 +192,13 @@
                             <span uk-icon="icon: bell"></span> Kalender abonnieren (webcal)
                         </a>
                         <input class="uk-input uk-form-small uk-margin-small-top bl-subscribe-url" type="text" readonly onclick="this.select()">
+                        <p class="uk-text-small uk-text-muted uk-margin-small-top">
+                            Kostenlos, ohne Anmeldung. Der Link enthält Ort, Wildart und deine
+                            Einstellungen offen lesbar in der URL - sobald du ihn abonnierst, liegt
+                            er bei deiner Kalender-App bzw. deren Cloud-Anbieter (z. B. iCloud,
+                            Google, Outlook). Nicht weitergeben, wenn du das nicht möchtest. Mehr
+                            dazu unten unter „Rechtliches &amp; Datenschutz“.
+                        </p>
                     </details>
                 </div>
 
@@ -201,5 +208,59 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="uk-margin">
+        <details class="bl-legal-details">
+            <summary class="uk-text-small">Rechtliches &amp; Datenschutz</summary>
+            <div class="uk-card uk-card-default uk-card-body bl-card uk-margin-small-top">
+                <dl class="uk-description-list bl-legal-list">
+                    <dt>Kostenlos &amp; freibleibend</dt>
+                    <dd>
+                        Ort- und Kalendersuche, Download und Abo sind kostenlos und ohne
+                        Registrierung nutzbar. Es besteht kein Anspruch auf Verfügbarkeit,
+                        Richtigkeit oder Vollständigkeit. Der Dienst kann jederzeit ohne
+                        Ankündigung geändert oder eingestellt werden.
+                    </dd>
+                    <dt>Haftungsausschluss</dt>
+                    <dd>
+                        Alle Angaben (Jagdzeiten, Sonnenauf-/-untergang, Büchsenlichtzeiten)
+                        erfolgen ohne Gewähr. Dieses Werkzeug ersetzt keine amtliche
+                        Rechtsauskunft und keine eigene Prüfung der aktuell gültigen
+                        Landesjagdzeitenverordnung sowie örtlicher Anordnungen (z. B.
+                        Schonzeitverkürzungen, Elterntierschutz, Schutzgebietsregelungen). Für
+                        Schäden aus der Nutzung der berechneten Zeiten wird keine Haftung
+                        übernommen, soweit gesetzlich zulässig.
+                    </dd>
+                    <dt>Datenstand</dt>
+                    <dd>
+                        Die Jagdzeiten-Datenbasis wurde am <?= \rex_escape($config['researchedAt']) ?>
+                        recherchiert (Quelle je Bundesland siehe „Datenquellen“ oben). Änderungen
+                        der Landesverordnungen nach diesem Zeitpunkt sind nicht automatisch
+                        berücksichtigt.
+                    </dd>
+                    <dt>Datenschutz – Ortssuche</dt>
+                    <dd>
+                        Deine Eingabe wird an unseren Server und von dort an den Geocoding-Dienst
+                        Photon (komoot, auf Basis von OpenStreetMap) weitergeleitet, um
+                        Koordinaten und Bundesland zu ermitteln. Es werden keine Nutzerkonten
+                        oder personenbezogenen Profile angelegt; Suchanfragen werden serverseitig
+                        nur kurzzeitig (5 Minuten) zwischengespeichert, um den externen Dienst zu
+                        entlasten.
+                    </dd>
+                    <dt>Datenschutz – Kalender-Abo</dt>
+                    <dd>
+                        Der Abo-Link (<code>webcal://</code>) enthält den gewählten Ort, die
+                        Wildart und deine Einstellungen offen lesbar in der URL. Sobald du diesen
+                        Link in einer Kalender-App abonnierst, liegt die Kontrolle über diese
+                        Daten bei deiner Kalender-App bzw. deren Anbieter (z. B. wird der Link bei
+                        iCloud-, Google- oder Outlook-Kalendern häufig mit deren Cloud
+                        synchronisiert). Gib den Link nicht an Dritte weiter, wenn du das nicht
+                        möchtest, und beachte die Datenschutzbestimmungen deines
+                        Kalenderanbieters.
+                    </dd>
+                </dl>
+            </div>
+        </details>
     </div>
 </div>
