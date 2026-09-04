@@ -24,9 +24,9 @@ SOFTWARE.
 
 ## Third-party services
 
-### UIkit 3
-[MIT License](https://github.com/uikit/uikit/blob/develop/LICENSE.md) — loaded via CDN when no
-local UIkit instance is available.
+This addon does not bundle or load any third-party frontend framework itself — it expects
+[UIkit 3](https://getuikit.com/) ([MIT License](https://github.com/uikit/uikit/blob/develop/LICENSE.md))
+to already be present on the host website (see README, "Voraussetzungen").
 
 ### Photon (komoot)
 Geocoding for the location search. Data © OpenStreetMap contributors, ODbL.
