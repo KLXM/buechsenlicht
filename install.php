@@ -1,0 +1,3 @@
+<?php
+
+\Buechsenlicht\Installer::syncModule();

@@ -1,0 +1,22 @@
+package: buechsenlicht
+version: '1.0.0'
+author: KLXM Crossmedia GmbH
+supportpage: https://github.com/klxm/
+license: MIT
+
+autoload:
+    classes:
+        Buechsenlicht\: lib/
+
+page:
+    title: 'Büchsenlicht-Kalender'
+    perm: buechsenlicht[]
+    icon: rex-icon fa-calendar
+
+requires:
+    redaxo: '^5.15'
+    php:
+        version: '>=8.1'
+
+permissions:
+    buechsenlicht[]: translate:perm_buechsenlicht

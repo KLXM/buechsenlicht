@@ -1,0 +1,1 @@
+<?php echo rex_view::info('Dieses Modul hat keine Eingabefelder. Es gibt beim Aufruf der Seite immer den vollständigen Büchsenlicht-Kalender aus (Ort, Wildart und Kalenderoptionen wählt der Besucher im Frontend).'); ?>

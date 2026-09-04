@@ -1,0 +1,275 @@
+.bl-app {
+    --bl-forest: #1f3a2e;
+    --bl-forest-dark: #14261d;
+    --bl-forest-light: #edf3ef;
+    --bl-accent: #3f6b4f;
+    --bl-warn: #8a5a1e;
+    background: var(--bl-forest-light);
+    padding: 1.5rem;
+    border-radius: 6px;
+    color: #24312a;
+}
+
+.bl-app .bl-card {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(20, 38, 29, 0.12);
+}
+
+.bl-app .uk-card-title {
+    color: var(--bl-forest);
+    font-weight: 600;
+    letter-spacing: .01em;
+    margin-bottom: 1rem;
+}
+
+.bl-app .bl-legal-note {
+    background: var(--bl-forest);
+    color: #fff;
+    border: none;
+}
+
+.bl-app .bl-legal-note p {
+    margin: 0;
+}
+
+.bl-app .bl-legal-note .uk-alert-close {
+    color: #fff;
+}
+
+.bl-app .bl-sources-link {
+    margin-left: .5rem;
+    color: #fff;
+    text-decoration: underline;
+    font-size: .85rem;
+    white-space: nowrap;
+}
+
+/* Nicht unter .bl-app skaliert: UIkit verschiebt uk-modal-Inhalte beim Öffnen an document.body,
+   dort sind .bl-app-scoped Selektoren/Custom-Properties nicht mehr wirksam. */
+.bl-sources-table td {
+    vertical-align: top;
+}
+
+.bl-sources-table .uk-text-warning {
+    color: #8a5a1e !important;
+}
+
+.bl-app .uk-button-primary {
+    background-color: var(--bl-forest);
+}
+
+.bl-app .uk-button-primary:hover,
+.bl-app .uk-button-primary:focus {
+    background-color: var(--bl-accent);
+}
+
+.bl-app .uk-button-secondary {
+    background-color: var(--bl-forest-dark);
+}
+
+.bl-app .bl-season-info {
+    margin-top: 1.25rem;
+    background: var(--bl-forest-light);
+    border: 1px solid rgba(31, 58, 46, 0.12);
+}
+
+.bl-app .bl-season-info dt {
+    color: var(--bl-forest);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    margin-top: .75rem;
+}
+
+.bl-app .bl-season-info dt:first-child {
+    margin-top: 0;
+}
+
+.bl-app .bl-season-info dd {
+    margin-left: 0;
+}
+
+.bl-app .bl-info-schnittmenge {
+    margin-top: .75rem;
+}
+
+.bl-app .uk-text-warning {
+    color: var(--bl-warn) !important;
+}
+
+.bl-app .bl-state-result {
+    margin-top: 1rem;
+}
+
+.bl-app .bl-ort-wrap {
+    position: relative;
+}
+
+.bl-app .bl-ort-group {
+    display: flex;
+    align-items: stretch;
+}
+
+.bl-app .bl-ort-group .bl-ort-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.bl-app .bl-ort-group .bl-btn-geocode {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+}
+
+.bl-app .bl-ort-suggestions {
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 2px 0 0;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid rgba(31, 58, 46, 0.2);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(20, 38, 29, 0.18);
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.bl-app .bl-ort-suggestions li {
+    padding: 0;
+}
+
+.bl-app .bl-ort-suggestions button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: .5rem .75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .9rem;
+    color: #24312a;
+}
+
+.bl-app .bl-ort-suggestions button:hover,
+.bl-app .bl-ort-suggestions button:focus,
+.bl-app .bl-ort-suggestions li.bl-active button {
+    background: var(--bl-forest-light);
+    outline: none;
+}
+
+.bl-app .bl-ort-suggestions .bl-suggestion-sub {
+    display: block;
+    font-size: .78rem;
+    color: #6b7b71;
+}
+
+.bl-app .bl-option-error {
+    margin-top: .5rem;
+}
+
+.bl-app .bl-subscribe-box summary {
+    cursor: pointer;
+    color: var(--bl-forest);
+}
+
+.bl-app .bl-subscribe-link {
+    margin-top: .5rem;
+}
+
+.bl-app dl.uk-description-list dd {
+    margin-bottom: 0;
+}
+
+.bl-app .bl-btn-geocode {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.bl-app .bl-spinner {
+    color: #fff;
+}
+
+/* Micro-Animationen - deaktiviert, wenn der Besucher reduzierte Bewegung bevorzugt. */
+@media (prefers-reduced-motion: no-preference) {
+    .bl-app .bl-btn-geocode,
+    .bl-app .bl-btn-generate,
+    .bl-app .bl-btn-download,
+    .bl-app .bl-subscribe-link {
+        transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+    }
+
+    .bl-app .bl-btn-geocode:hover:not(:disabled),
+    .bl-app .bl-btn-generate:hover:not(:disabled),
+    .bl-app .bl-btn-download:hover,
+    .bl-app .bl-subscribe-link:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(20, 38, 29, .18);
+    }
+
+    .bl-app .bl-btn-geocode:active:not(:disabled),
+    .bl-app .bl-btn-generate:active:not(:disabled),
+    .bl-app .bl-btn-download:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    .bl-app .bl-btn-generate:not(:disabled) {
+        animation: bl-ready-pulse .6s ease;
+    }
+
+    .bl-app .bl-state-result,
+    .bl-app .bl-empty-result,
+    .bl-app .bl-result,
+    .bl-app .bl-ort-suggestions {
+        animation: bl-fade-slide-in .3s ease both;
+    }
+
+    .bl-app .bl-season-info.bl-flash {
+        animation: bl-info-flash .6s ease;
+    }
+
+    .bl-app .uk-checkbox {
+        transition: box-shadow .15s ease;
+    }
+}
+
+@keyframes bl-fade-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bl-ready-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(63, 107, 79, .55);
+    }
+    100% {
+        box-shadow: 0 0 0 10px rgba(63, 107, 79, 0);
+    }
+}
+
+@keyframes bl-info-flash {
+    0% {
+        background-color: #dcebe1;
+    }
+    100% {
+        background-color: var(--bl-forest-light);
+    }
+}
