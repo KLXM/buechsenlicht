@@ -40,3 +40,6 @@
 - CSS/JS-Assets bekommen jetzt einen dateizeitbasierten Cache-Buster (`?v=<mtime>`) in den
   `<link>`/`<script>`-URLs, damit Browser nach einem Deploy nicht versehentlich eine ältere,
   bereits im HTTP-Cache liegende Version derselben URL weiterverwenden.
+- UIkit-3-CDN-Fallback entfernt: Das AddOn lädt UIkit 3 nicht mehr selbst nach (auch nicht bedingt
+  über eine `uikit_theme_builder`-Prüfung), sondern setzt konsequent voraus, dass die Website UIkit
+  3 bereits selbst einbindet.

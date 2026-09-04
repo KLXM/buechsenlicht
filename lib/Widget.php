@@ -33,8 +33,6 @@ class Widget
         $emitAssets = !self::$assetsEmitted;
         self::$assetsEmitted = true;
 
-        $loadUikitCdn = !\rex_addon::get('uikit_theme_builder')->isAvailable();
-
         ob_start();
         include __DIR__ . '/../templates/app.tpl.php';
         return (string) ob_get_clean();

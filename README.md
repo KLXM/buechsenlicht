@@ -44,8 +44,9 @@ abonniert werden und bleibt dann dauerhaft aktuell. Zeitraum: heute bis heute + 
 
 - REDAXO `^5.15`
 - PHP `>=8.1`
-- UIkit 3 (wird automatisch über CDN nachgeladen, falls das AddOn `uikit_theme_builder` nicht
-  installiert ist – ansonsten wird dessen UIkit-Instanz mitgenutzt, um doppeltes Laden zu vermeiden)
+- **UIkit 3 muss auf der Website bereits eingebunden sein** (z. B. über das AddOn
+  `uikit_theme_builder` oder das Template selbst) – dieses AddOn lädt UIkit 3 bewusst nicht selbst
+  nach (auch nicht per CDN-Fallback), um doppeltes Laden bzw. Versionskonflikte zu vermeiden
 - Ausgehende HTTPS-Verbindungen vom Webserver aus erlaubt (für die Ortssuche über Photon und den
   ICS-Feed)
 

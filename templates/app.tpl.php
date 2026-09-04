@@ -3,16 +3,14 @@
  * @var string $instanceId
  * @var array  $config
  * @var bool   $emitAssets
- * @var bool   $loadUikitCdn
  * @var \rex_addon $addon
+ *
+ * UIkit 3 wird bewusst NICHT von diesem AddOn geladen (weder fest noch per CDN-Fallback) - die
+ * Website bindet UIkit 3 bereits selbst ein. Wer dieses AddOn auf einer Website ohne UIkit 3
+ * einsetzt, muss es selbst einbinden.
  */
 ?>
 <?php if ($emitAssets): ?>
-<?php if ($loadUikitCdn): ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/css/uikit.min.css">
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit-icons.min.js"></script>
-<?php endif; ?>
 <?php
 // Cache-Buster per Dateiänderungszeit: ohne das würde ein Browser die zuvor geladene assets-URL
 // (kein Versions-Query-String) auch nach einem Deploy weiter aus dem HTTP-Cache bedienen.
