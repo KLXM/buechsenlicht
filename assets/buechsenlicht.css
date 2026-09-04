@@ -55,6 +55,35 @@
     color: #8a5a1e !important;
 }
 
+/* Theming für Inhalte innerhalb relozierter uk-modal-Fenster (siehe Kommentar oben) - dieselben
+   Farben wie die .bl-app-Regeln, aber ohne .bl-app-Abhängigkeit. */
+.bl-modal-themed .uk-button-primary {
+    background-color: #1f3a2e;
+}
+
+.bl-modal-themed .uk-button-primary:hover,
+.bl-modal-themed .uk-button-primary:focus {
+    background-color: #3f6b4f;
+}
+
+.bl-modal-themed dl.uk-description-list dt {
+    color: #1f3a2e;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    margin-top: .75rem;
+}
+
+.bl-modal-themed dl.uk-description-list dt:first-child {
+    margin-top: 0;
+}
+
+.bl-modal-themed dl.uk-description-list dd {
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
 .bl-app .uk-button-primary {
     background-color: var(--bl-forest);
 }

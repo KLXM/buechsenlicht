@@ -37,6 +37,9 @@ abonniert werden und bleibt dann dauerhaft aktuell. Zeitraum: heute bis heute + 
 - **Büchsenlicht-Berechnung** über den NOAA-Sonnenalgorithmus, inkl. korrekter Sommer-/Winterzeit.
 - **ICS-Download** direkt im Browser erzeugt, keine Serveranfrage nötig.
 - **Abonnierbarer ICS-Feed** (`webcal://`) für Kalender-Apps, die sich selbstständig aktuell halten.
+- **„Einzelnen Tag prüfen“-Modal**: beliebiges Datum (innerhalb des 5-Jahres-Zeitraums) wählen und
+  sofort sehen, ob es ein Jagdtag ist, inkl. Sonnenauf-/-untergang und Büchsenlicht-Fenstern - ohne
+  den ganzen Kalender zu erzeugen.
 - **„Datenquellen“-Modal**: Übersicht aller 16 Bundesländer mit Quelle, Link und Datenstand.
 - Durchgängig **UIkit 3**, responsive für Desktop, Tablet und Smartphone.
 

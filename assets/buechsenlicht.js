@@ -243,6 +243,43 @@
         return { year: p.year, month: p.month, day: p.day };
     }
 
+    /**
+     * Ermittelt für EINEN einzelnen Kalendertag, ob er in der Jagdzeit liegt, sowie Sonnenauf-/
+     * -untergang und die daraus resultierenden Büchsenlicht-Fenster (morgens/abends). Sowohl von
+     * generateEvents() (Mehrjahres-Kalender) als auch von der "Einzelnen Tag prüfen"-Funktion im
+     * UI genutzt, damit beide exakt dieselbe Logik verwenden.
+     *
+     * @return {inSeason: boolean, sunrise: Date|null, sunset: Date|null, morgenStart: Date|null, morgenEnd: Date|null, abendStart: Date|null, abendEnd: Date|null}
+     */
+    function computeDayInfo(year, month, day, periods, lat, lon, morgens, abends, vorMin, nachMin) {
+        var result = { inSeason: false, sunrise: null, sunset: null, morgenStart: null, morgenEnd: null, abendStart: null, abendEnd: null };
+
+        var monthDay = pad(month) + '-' + pad(day);
+        if (!isDateInSeason(monthDay, periods)) {
+            return result;
+        }
+
+        var sun = sunTimes(year, month, day, lat, lon);
+        if (!sun.sunrise || !sun.sunset) {
+            return result;
+        }
+
+        result.inSeason = true;
+        result.sunrise = sun.sunrise;
+        result.sunset = sun.sunset;
+
+        if (morgens) {
+            result.morgenStart = new Date(sun.sunrise.getTime() - vorMin * 60000);
+            result.morgenEnd = sun.sunrise;
+        }
+        if (abends) {
+            result.abendStart = sun.sunset;
+            result.abendEnd = new Date(sun.sunset.getTime() + nachMin * 60000);
+        }
+
+        return result;
+    }
+
     function generateEvents(periods, lat, lon, morgens, abends, vorMin, nachMin) {
         var events = [];
         if (0 === periods.length || (!morgens && !abends)) {
@@ -256,32 +293,15 @@
         while (cursor <= end) {
             var d = new Date(cursor);
             var y = d.getUTCFullYear(), m = d.getUTCMonth() + 1, day = d.getUTCDate();
-            var monthDay = pad(m) + '-' + pad(day);
 
-            if (isDateInSeason(monthDay, periods)) {
-                var sun = sunTimes(y, m, day, lat, lon);
-                if (sun.sunrise && sun.sunset) {
-                    var dateStr = y + '-' + pad(m) + '-' + pad(day);
-                    if (morgens) {
-                        events.push({
-                            date: dateStr,
-                            type: 'morgens',
-                            start: new Date(sun.sunrise.getTime() - vorMin * 60000),
-                            end: sun.sunrise,
-                            sunrise: sun.sunrise,
-                            sunset: sun.sunset,
-                        });
-                    }
-                    if (abends) {
-                        events.push({
-                            date: dateStr,
-                            type: 'abends',
-                            start: sun.sunset,
-                            end: new Date(sun.sunset.getTime() + nachMin * 60000),
-                            sunrise: sun.sunrise,
-                            sunset: sun.sunset,
-                        });
-                    }
+            var info = computeDayInfo(y, m, day, periods, lat, lon, morgens, abends, vorMin, nachMin);
+            if (info.inSeason) {
+                var dateStr = y + '-' + pad(m) + '-' + pad(day);
+                if (info.morgenStart) {
+                    events.push({ date: dateStr, type: 'morgens', start: info.morgenStart, end: info.morgenEnd, sunrise: info.sunrise, sunset: info.sunset });
+                }
+                if (info.abendStart) {
+                    events.push({ date: dateStr, type: 'abends', start: info.abendStart, end: info.abendEnd, sunrise: info.sunrise, sunset: info.sunset });
                 }
             }
 
@@ -305,6 +325,7 @@
             ortWrap: container.querySelector('.bl-ort-wrap'),
             suggestions: container.querySelector('.bl-ort-suggestions'),
             geocodeBtn: container.querySelector('.bl-btn-geocode'),
+            geocodeBtnIcon: container.querySelector('.bl-btn-geocode-icon'),
             geocodeBtnSpinner: container.querySelector('.bl-spinner'),
             geocodeBtnLabel: container.querySelector('.bl-btn-geocode-label'),
             geocodeStatus: container.querySelector('.bl-geocode-status'),
@@ -334,7 +355,29 @@
             subscribeLink: container.querySelector('.bl-subscribe-link'),
             subscribeUrl: container.querySelector('.bl-subscribe-url'),
             emptyResult: container.querySelector('.bl-empty-result'),
+            daycheckBtn: container.querySelector('.bl-btn-daycheck'),
         };
+
+        // uk-modal-Elemente werden von UIkit beim Initialisieren an document.body verschoben, sind
+        // danach also keine Nachfahren von container mehr - über die feste ID lokalisieren statt
+        // über container.querySelector().
+        var daycheckModal = document.getElementById(container.id + '-daycheck');
+        var daycheckEls = daycheckModal ? {
+            date: daycheckModal.querySelector('.bl-daycheck-date'),
+            checkBtn: daycheckModal.querySelector('.bl-daycheck-check'),
+            result: daycheckModal.querySelector('.bl-daycheck-result'),
+            dateLabel: daycheckModal.querySelector('.bl-daycheck-date-label'),
+            speciesLabel: daycheckModal.querySelector('.bl-daycheck-species-label'),
+            stateLabel: daycheckModal.querySelector('.bl-daycheck-state-label'),
+            inSeason: daycheckModal.querySelector('.bl-daycheck-in-season'),
+            outSeason: daycheckModal.querySelector('.bl-daycheck-out-season'),
+            sunrise: daycheckModal.querySelector('.bl-daycheck-sunrise'),
+            sunset: daycheckModal.querySelector('.bl-daycheck-sunset'),
+            morgenDt: daycheckModal.querySelector('.bl-daycheck-morgen-dt'),
+            morgenDd: daycheckModal.querySelector('.bl-daycheck-morgen-dd'),
+            abendDt: daycheckModal.querySelector('.bl-daycheck-abend-dt'),
+            abendDd: daycheckModal.querySelector('.bl-daycheck-abend-dd'),
+        } : null;
 
         var place = null; // { name, lat, lon, stateCode }
         var lastEvents = null;
@@ -362,6 +405,7 @@
 
         function setGeocodeLoading(isLoading) {
             els.geocodeBtn.disabled = isLoading;
+            els.geocodeBtnIcon.hidden = isLoading;
             els.geocodeBtnSpinner.hidden = !isLoading;
             els.geocodeBtnLabel.textContent = isLoading ? 'Suche …' : 'Ort bestimmen';
         }
@@ -421,6 +465,7 @@
             var opts = currentOptions();
             var ok = !!place && (opts.morgens || opts.abends);
             els.generateBtn.disabled = !ok;
+            els.daycheckBtn.disabled = !place;
         }
 
         function enforceAtLeastOneCheckbox(changed) {
@@ -757,6 +802,57 @@
                 .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
                 .replace(/[^a-zA-Z0-9]+/g, '_')
                 .replace(/^_+|_+$/g, '');
+        }
+
+        // --- Einzelnen Tag prüfen (Modal) ---
+        if (daycheckEls) {
+            var todayInfo = todayBerlin();
+            var todayStr = todayInfo.year + '-' + pad(todayInfo.month) + '-' + pad(todayInfo.day);
+            var maxDateObj = new Date(Date.UTC(todayInfo.year + 5, todayInfo.month - 1, todayInfo.day));
+            var maxStr = maxDateObj.getUTCFullYear() + '-' + pad(maxDateObj.getUTCMonth() + 1) + '-' + pad(maxDateObj.getUTCDate());
+            daycheckEls.date.min = todayStr;
+            daycheckEls.date.max = maxStr;
+            daycheckEls.date.value = todayStr;
+
+            daycheckEls.checkBtn.addEventListener('click', function () {
+                if (!place) { return; }
+                var raw = daycheckEls.date.value; // "YYYY-MM-DD"
+                if (!raw) { return; }
+                var parts = raw.split('-');
+                var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+                if (!y || !m || !d) { return; }
+
+                var species = currentSpecies();
+                var opts = currentOptions();
+                var periods = config.states[place.stateCode].species[species] || [];
+                var info = computeDayInfo(y, m, d, periods, place.lat, place.lon, opts.morgens, opts.abends, opts.vor, opts.nach);
+
+                daycheckEls.dateLabel.textContent = pad(d) + '.' + pad(m) + '.' + y;
+                daycheckEls.speciesLabel.textContent = species;
+                daycheckEls.stateLabel.textContent = config.states[place.stateCode].name;
+
+                daycheckEls.inSeason.hidden = !info.inSeason;
+                daycheckEls.outSeason.hidden = info.inSeason;
+
+                if (info.inSeason) {
+                    daycheckEls.sunrise.textContent = berlinTimeLabel(info.sunrise) + ' Uhr';
+                    daycheckEls.sunset.textContent = berlinTimeLabel(info.sunset) + ' Uhr';
+
+                    daycheckEls.morgenDt.hidden = !info.morgenStart;
+                    daycheckEls.morgenDd.hidden = !info.morgenStart;
+                    if (info.morgenStart) {
+                        daycheckEls.morgenDd.textContent = berlinTimeLabel(info.morgenStart) + '–' + berlinTimeLabel(info.morgenEnd) + ' Uhr';
+                    }
+
+                    daycheckEls.abendDt.hidden = !info.abendStart;
+                    daycheckEls.abendDd.hidden = !info.abendStart;
+                    if (info.abendStart) {
+                        daycheckEls.abendDd.textContent = berlinTimeLabel(info.abendStart) + '–' + berlinTimeLabel(info.abendEnd) + ' Uhr';
+                    }
+                }
+
+                daycheckEls.result.hidden = false;
+            });
         }
 
         updateInfoBox();

@@ -49,3 +49,9 @@
   wurde - native Adress-Autofill-Vorschläge sind eine input-spezifische Browserfunktion und greifen
   bei textarea in keinem Browser. Enter fügt dort keinen Zeilenumbruch mehr ein, sondern übernimmt
   den aktiven Vorschlag bzw. löst „Ort bestimmen“ aus, wenn kein Vorschlag aktiv ist.
+- „Einzelnen Tag prüfen“-Modal ergänzt: beliebiges Datum wählen und sofort sehen, ob es für Ort +
+  Wildart ein Jagdtag ist, inkl. Sonnenauf-/-untergang und Büchsenlicht-Fenstern. Dafür die
+  Tageslogik aus `generateEvents()` in eine eigenständige, wiederverwendbare Funktion
+  `computeDayInfo()` extrahiert (JS), die jetzt sowohl vom Mehrjahres-Kalender als auch vom neuen
+  Modal genutzt wird - keine doppelte Logik. UIkit3-Icons ergänzt (Ort bestimmen, Kalender
+  erstellen, Einzelnen Tag prüfen, ICS herunterladen, Ergebnis-Anzeige im neuen Modal).

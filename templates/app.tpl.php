@@ -31,7 +31,7 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
     </div>
 
     <div id="<?= \rex_escape($instanceId) ?>-sources" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
+        <div class="uk-modal-dialog uk-modal-body bl-modal-themed">
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <h3>Datenquellen je Bundesland</h3>
             <p class="uk-text-small uk-text-muted">
@@ -87,6 +87,7 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                     <div class="bl-ort-group">
                         <textarea class="uk-textarea bl-ort-input" id="<?= \rex_escape($instanceId) ?>-ort" rows="1" placeholder="z. B. Ratingen" autocomplete="off" spellcheck="false" readonly role="combobox" aria-expanded="false" aria-autocomplete="list"></textarea>
                         <button class="uk-button uk-button-primary bl-btn-geocode" type="button">
+                            <span class="bl-btn-geocode-icon" uk-icon="icon: location"></span>
                             <span class="bl-spinner" uk-spinner="ratio: 0.55" hidden></span>
                             <span class="bl-btn-geocode-label">Ort bestimmen</span>
                         </button>
@@ -168,7 +169,13 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
 
                 <div class="bl-option-error uk-text-danger uk-text-small" hidden>Bitte mindestens „morgens“ oder „abends“ aktivieren.</div>
 
-                <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-top bl-btn-generate" type="button" disabled>Kalender erstellen</button>
+                <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-top bl-btn-generate" type="button" disabled>
+                    <span uk-icon="icon: calendar"></span> Kalender erstellen
+                </button>
+
+                <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top bl-btn-daycheck" type="button" uk-toggle="target: #<?= \rex_escape($instanceId) ?>-daycheck" disabled>
+                    <span uk-icon="icon: search"></span> Einzelnen Tag prüfen
+                </button>
 
                 <div class="bl-result uk-margin" hidden>
                     <div class="uk-alert uk-alert-primary" uk-alert>
@@ -184,7 +191,9 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                         </p>
                     </div>
 
-                    <button class="uk-button uk-button-secondary uk-width-1-1 bl-btn-download" type="button">ICS herunterladen</button>
+                    <button class="uk-button uk-button-secondary uk-width-1-1 bl-btn-download" type="button">
+                        <span uk-icon="icon: download"></span> ICS herunterladen
+                    </button>
 
                     <details class="uk-margin-small-top bl-subscribe-box">
                         <summary class="uk-text-small">Kalender abonnieren (statt Download)</summary>
@@ -212,6 +221,50 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
             </div>
         </div>
 
+    </div>
+
+    <div id="<?= \rex_escape($instanceId) ?>-daycheck" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body bl-modal-themed">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <h3><span uk-icon="icon: search"></span> Einzelnen Tag prüfen</h3>
+            <p class="uk-text-small uk-text-muted">
+                Prüft für den gewählten Ort und die gewählte Wildart, ob ein bestimmter Tag in der
+                Jagdzeit liegt, und zeigt Sonnenauf-/-untergang sowie die Büchsenlicht-Fenster.
+            </p>
+            <div class="uk-margin">
+                <label class="uk-form-label" for="<?= \rex_escape($instanceId) ?>-daycheck-date">Datum</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input bl-daycheck-date" id="<?= \rex_escape($instanceId) ?>-daycheck-date" type="date">
+                </div>
+            </div>
+            <button class="uk-button uk-button-primary uk-width-1-1 bl-daycheck-check" type="button">
+                <span uk-icon="icon: check"></span> Prüfen
+            </button>
+
+            <div class="bl-daycheck-result uk-margin" hidden>
+                <p>
+                    <strong class="bl-daycheck-date-label"></strong> ·
+                    <span class="bl-daycheck-species-label"></span> ·
+                    <span class="bl-daycheck-state-label"></span>
+                </p>
+                <div class="bl-daycheck-in-season uk-alert uk-alert-success" uk-alert hidden>
+                    <p class="uk-margin-remove-bottom"><span uk-icon="icon: check"></span> Jagdtag - Büchsenlicht:</p>
+                    <dl class="uk-description-list bl-daycheck-times">
+                        <dt>Sonnenaufgang</dt>
+                        <dd class="bl-daycheck-sunrise"></dd>
+                        <dt>Sonnenuntergang</dt>
+                        <dd class="bl-daycheck-sunset"></dd>
+                        <dt class="bl-daycheck-morgen-dt" hidden>Morgens</dt>
+                        <dd class="bl-daycheck-morgen-dd" hidden></dd>
+                        <dt class="bl-daycheck-abend-dt" hidden>Abends</dt>
+                        <dd class="bl-daycheck-abend-dd" hidden></dd>
+                    </dl>
+                </div>
+                <div class="bl-daycheck-out-season uk-alert uk-alert-warning" uk-alert hidden>
+                    <p><span uk-icon="icon: ban"></span> Kein Jagdtag für diese Wildart an diesem Tag.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="uk-margin">
