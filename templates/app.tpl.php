@@ -92,14 +92,14 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                             <span class="bl-btn-geocode-label">Ort bestimmen</span>
                         </button>
                     </div>
-                    <ul class="bl-ort-suggestions" role="listbox" hidden></ul>
+                    <ul class="bl-ort-suggestions uk-animation-fade" role="listbox" hidden></ul>
                 </div>
             </div>
 
             <div class="bl-geocode-status uk-text-meta" hidden></div>
 
-            <div class="bl-state-result uk-alert uk-alert-success" uk-alert hidden>
-                <p><strong>Erkanntes Bundesland:</strong> <span class="bl-state-name"></span></p>
+            <div class="bl-state-result bl-panel bl-panel-success uk-animation-fade" hidden>
+                <p><span uk-icon="icon: check"></span> <strong>Erkanntes Bundesland:</strong> <span class="bl-state-name"></span></p>
             </div>
 
             <p class="uk-text-meta uk-margin-small-top bl-geocode-credit">
@@ -177,8 +177,8 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                     <span uk-icon="icon: search"></span> Einzelnen Tag prüfen
                 </button>
 
-                <div class="bl-result uk-margin" hidden>
-                    <div class="uk-alert uk-alert-primary" uk-alert>
+                <div class="bl-result uk-margin uk-animation-fade" hidden>
+                    <div class="bl-panel bl-panel-info">
                         <p><strong class="bl-result-count"></strong> Kalendereinträge</p>
                         <p class="bl-result-header"></p>
                         <p class="uk-margin-remove-top">
@@ -215,8 +215,8 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                     </details>
                 </div>
 
-                <div class="bl-empty-result uk-alert uk-alert-warning uk-margin" uk-alert hidden>
-                    <p>Für diesen Zeitraum wurden keine Kalendereinträge gefunden. Bitte Ort und Wildart prüfen.</p>
+                <div class="bl-empty-result bl-panel bl-panel-warning uk-margin uk-animation-fade" hidden>
+                    <p><span uk-icon="icon: ban"></span> Für diesen Zeitraum wurden keine Kalendereinträge gefunden. Bitte Ort und Wildart prüfen.</p>
                 </div>
             </div>
         </div>
@@ -247,7 +247,7 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                     <span class="bl-daycheck-species-label"></span> ·
                     <span class="bl-daycheck-state-label"></span>
                 </p>
-                <div class="bl-daycheck-in-season uk-alert uk-alert-success" uk-alert hidden>
+                <div class="bl-daycheck-in-season bl-panel bl-panel-success uk-animation-fade" hidden>
                     <p class="uk-margin-remove-bottom"><span uk-icon="icon: check"></span> Jagdtag - Büchsenlicht:</p>
                     <dl class="uk-description-list bl-daycheck-times">
                         <dt>Sonnenaufgang</dt>
@@ -260,7 +260,7 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                         <dd class="bl-daycheck-abend-dd" hidden></dd>
                     </dl>
                 </div>
-                <div class="bl-daycheck-out-season uk-alert uk-alert-warning" uk-alert hidden>
+                <div class="bl-daycheck-out-season bl-panel bl-panel-warning uk-animation-fade" hidden>
                     <p><span uk-icon="icon: ban"></span> Kein Jagdtag für diese Wildart an diesem Tag.</p>
                 </div>
             </div>

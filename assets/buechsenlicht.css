@@ -16,6 +16,35 @@
     box-shadow: 0 1px 3px rgba(20, 38, 29, 0.12);
 }
 
+/* Weiße Card statt UIkit-Alert-Einfärbung (klärt sich mit Website-Themes leichter, wirkt
+   ruhiger) - farbiger linker Rand als dezenter Statushinweis statt vollflächigem Hintergrund.
+   Bewusst nicht unter .bl-app skaliert, da einige dieser Panels (Einzelnen-Tag-Modal) innerhalb
+   eines von UIkit an document.body verschobenen uk-modal liegen. */
+.bl-panel {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(20, 38, 29, 0.12);
+    padding: 1rem 1.25rem;
+    border-left: 4px solid #dfe6e1;
+}
+
+.bl-panel-success {
+    border-left-color: #3f6b4f;
+}
+
+.bl-panel-warning {
+    border-left-color: #8a5a1e;
+}
+
+.bl-panel-info {
+    border-left-color: #1f3a2e;
+}
+
+.bl-panel p:last-child,
+.bl-panel dl:last-child {
+    margin-bottom: 0;
+}
+
 .bl-app .uk-card-title {
     color: var(--bl-forest);
     font-weight: 600;
@@ -294,30 +323,12 @@
         animation: bl-ready-pulse .6s ease;
     }
 
-    .bl-app .bl-state-result,
-    .bl-app .bl-empty-result,
-    .bl-app .bl-result,
-    .bl-app .bl-ort-suggestions {
-        animation: bl-fade-slide-in .3s ease both;
-    }
-
     .bl-app .bl-season-info.bl-flash {
         animation: bl-info-flash .6s ease;
     }
 
     .bl-app .uk-checkbox {
         transition: box-shadow .15s ease;
-    }
-}
-
-@keyframes bl-fade-slide-in {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 

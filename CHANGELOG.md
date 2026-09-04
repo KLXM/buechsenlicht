@@ -55,3 +55,8 @@
   `computeDayInfo()` extrahiert (JS), die jetzt sowohl vom Mehrjahres-Kalender als auch vom neuen
   Modal genutzt wird - keine doppelte Logik. UIkit3-Icons ergänzt (Ort bestimmen, Kalender
   erstellen, Einzelnen Tag prüfen, ICS herunterladen, Ergebnis-Anzeige im neuen Modal).
+- UIkit-Alert-Boxen (farbige Vollflächen-Hintergründe) durch weiße Cards mit Schatten und
+  dezentem farbigem linkem Rand ersetzt (`.bl-panel`/`.bl-panel-success`/`-warning`/`-info`) -
+  wirkt ruhiger und verträgt sich unabhängig vom Website-Theme. Betrifft: Bundesland-Erkennung,
+  Kalender-Ergebnis, „keine Einträge“-Hinweis sowie beide Zustände im „Einzelnen Tag
+  prüfen“-Modal. Eigene Fade-Slide-Animation durch UIkits `uk-animation-fade` ersetzt.
