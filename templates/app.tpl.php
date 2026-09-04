@@ -199,12 +199,34 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                         <summary class="uk-text-small">Kalender abonnieren (statt Download)</summary>
                         <p class="uk-text-small uk-margin-small-top">
                             Dieser Link liefert den Kalender live (immer ab heute, 5 Jahre) und aktualisiert sich in
-                            der Kalender-App automatisch. Zum Abonnieren öffnen oder kopieren:
+                            der Kalender-App automatisch.
                         </p>
+
                         <a class="bl-subscribe-link uk-button uk-button-default uk-width-1-1" href="#" rel="nofollow">
                             <span uk-icon="icon: bell"></span> Kalender abonnieren (webcal)
                         </a>
-                        <input class="uk-input uk-form-small uk-margin-small-top bl-subscribe-url" type="text" readonly onclick="this.select()">
+
+                        <p class="uk-text-small uk-text-muted uk-margin-small-top uk-margin-remove-bottom">
+                            Unterstützt dein Kalenderprogramm <code>webcal://</code> nicht, direkt abonnieren in:
+                        </p>
+                        <div class="uk-child-width-1-2 uk-grid-small uk-margin-small-top" uk-grid>
+                            <div>
+                                <a class="bl-subscribe-google uk-button uk-button-default uk-width-1-1" href="#" target="_blank" rel="noopener">Google Kalender</a>
+                            </div>
+                            <div>
+                                <a class="bl-subscribe-outlook uk-button uk-button-default uk-width-1-1" href="#" target="_blank" rel="noopener">Outlook / Microsoft 365</a>
+                            </div>
+                        </div>
+
+                        <label class="uk-form-label uk-text-small uk-margin-small-top" for="<?= \rex_escape($instanceId) ?>-subscribe-url">
+                            Oder Link kopieren (falls auch das nicht unterstützt wird)
+                        </label>
+                        <div class="uk-form-controls uk-flex uk-flex-middle" style="gap:.5rem;">
+                            <input class="uk-input uk-form-small bl-subscribe-url" id="<?= \rex_escape($instanceId) ?>-subscribe-url" type="text" readonly onclick="this.select()">
+                            <button class="uk-button uk-button-default uk-button-small bl-subscribe-copy" type="button">Kopieren</button>
+                        </div>
+                        <p class="bl-subscribe-copy-status uk-text-small uk-text-success uk-margin-remove-top uk-margin-small-top" hidden>Link kopiert.</p>
+
                         <p class="uk-text-small uk-text-muted uk-margin-small-top">
                             Kostenlos, ohne Anmeldung. Der Link enthält Ort, Wildart und deine
                             Einstellungen offen lesbar in der URL - sobald du ihn abonnierst, liegt

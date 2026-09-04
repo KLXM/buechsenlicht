@@ -66,3 +66,9 @@
   `uk-modal-container`-Variante wurde ausprobiert, aber wieder verworfen: Bei ca. 1400px
   Fensterbreite ragte das dann sehr breite Modal hinter die fixierte Backend-Sidebar und schnitt
   stattdessen die erste Spalte ab - die Standardbreite plus Zeilenumbruch war die robustere Lösung.
+- Kalender-Abo um drei weitere Wege ergänzt, da `webcal://` nicht von jedem Kalenderprogramm
+  unterstützt wird: Buttons für Google Kalender (`calendar/render?cid=`-Deeplink) und Outlook/
+  Microsoft 365 (`addfromweb?url=`-Deeplink), plus ein „Kopieren“-Button (Zwischenablage-API mit
+  Fallback) neben dem bestehenden Klartext-Link für alle übrigen Programme. Hinweis in der README
+  ergänzt, dass Google/Outlook den Feed serverseitig abrufen und daher nur mit einer öffentlich
+  erreichbaren Domain + gültigem Zertifikat funktionieren, nicht mit einer lokalen `.local`-Instanz.

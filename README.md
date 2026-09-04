@@ -36,7 +36,8 @@ abonniert werden und bleibt dann dauerhaft aktuell. Zeitraum: heute bis heute + 
   und Datenstand.
 - **Büchsenlicht-Berechnung** über den NOAA-Sonnenalgorithmus, inkl. korrekter Sommer-/Winterzeit.
 - **ICS-Download** direkt im Browser erzeugt, keine Serveranfrage nötig.
-- **Abonnierbarer ICS-Feed** (`webcal://`) für Kalender-Apps, die sich selbstständig aktuell halten.
+- **Abonnierbarer ICS-Feed** (`webcal://`, Google Kalender, Outlook/Microsoft 365, plus Klartext-
+  Link mit Kopieren-Button für alle übrigen Kalenderprogramme) – aktualisiert sich selbstständig.
 - **„Einzelnen Tag prüfen“-Modal**: beliebiges Datum (innerhalb des 5-Jahres-Zeitraums) wählen und
   sofort sehen, ob es ein Jagdtag ist, inkl. Sonnenauf-/-untergang und Büchsenlicht-Fenstern - ohne
   den ganzen Kalender zu erzeugen.
@@ -98,15 +99,32 @@ echo \Buechsenlicht\Widget::render();
 
 ## Kalender abonnieren
 
-Nach „Kalender erstellen“ zeigt die App unter „Kalender abonnieren“ einen `webcal://`-Link sowie
-die zugehörige URL zum Kopieren. Kalender-Apps rufen diesen Link periodisch erneut ab; da der
-Zeitraum immer bei „heute“ beginnt, bleibt das Abo dauerhaft aktuell, ohne dass der Nutzer die Datei
-erneut herunterladen muss. Technisch ist das ein öffentlicher, zustandsloser API-Endpunkt
-(`rex-api-call=buechsenlicht_feed`, kein Login nötig) – alle nötigen Parameter (Ort, Koordinaten,
-Bundesland, Wildart, Büchsenlicht-Werte) stecken in der URL selbst. Das ist zugleich der wichtigste
-Datenschutz-Punkt: Diese URL enthält Ort und Wildart offen lesbar und liegt nach dem Abonnieren in
-der Kontrolle der Kalender-App bzw. deren Cloud-Anbieter – erklärt der App selbst im Bereich
-„Rechtliches & Datenschutz“ (siehe unten).
+Nach „Kalender erstellen“ zeigt die App unter „Kalender abonnieren“ vier Wege, je nachdem was der
+Kalender des Nutzers unterstützt:
+
+1. **`webcal://`-Link** – von den meisten Desktop-/Mobil-Kalender-Apps (Apple Kalender, viele
+   Android-Apps u. a.) direkt als Abo erkannt.
+2. **„Google Kalender“-Button** – öffnet Google Calendars dokumentierten
+   `calendar/render?cid=`-Deeplink mit vorausgefüllter Feed-URL, Nutzer bestätigt nur noch.
+3. **„Outlook / Microsoft 365“-Button** – analog über Outlooks `addfromweb?url=`-Deeplink.
+4. **Klartext-Link zum Kopieren** (mit eigenem „Kopieren“-Button, Zwischenablage-API mit
+   Fallback) – für alle Kalenderprogramme, die weder `webcal://` noch die beiden Deeplinks
+   unterstützen; einfach unter „Kalender abonnieren/von URL/aus dem Internet“ einfügen.
+
+Kalender-Apps rufen den Link periodisch erneut ab; da der Zeitraum immer bei „heute“ beginnt, bleibt
+das Abo dauerhaft aktuell, ohne dass der Nutzer die Datei erneut herunterladen muss. Technisch ist
+das ein öffentlicher, zustandsloser API-Endpunkt (`rex-api-call=buechsenlicht_feed`, kein Login
+nötig) – alle nötigen Parameter (Ort, Koordinaten, Bundesland, Wildart, Büchsenlicht-Werte) stecken
+in der URL selbst. Das ist zugleich der wichtigste Datenschutz-Punkt: Diese URL enthält Ort und
+Wildart offen lesbar und liegt nach dem Abonnieren in der Kontrolle der Kalender-App bzw. deren
+Cloud-Anbieter – erklärt der App selbst im Bereich „Rechtliches & Datenschutz“ (siehe unten).
+
+> **Zum Testen:** Google Kalender und Outlook rufen den Feed von ihren eigenen Servern ab, nicht
+> vom Gerät des Nutzers. Das funktioniert nur mit einer **öffentlich erreichbaren** Domain und
+> einem gültigen (nicht selbstsignierten) HTTPS-Zertifikat – eine lokale `.local`-Testinstanz
+> (mDNS, nur im eigenen Netz auflösbar) kann von diesen Diensten grundsätzlich nicht erreicht
+> werden, das Abo bleibt dort leer. Kein Code-Fehler, sondern eine Eigenschaft solcher
+> Testumgebungen.
 
 ## Rechtliches & Datenschutz
 

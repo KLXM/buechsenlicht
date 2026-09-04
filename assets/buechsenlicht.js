@@ -354,6 +354,10 @@
             downloadBtn: container.querySelector('.bl-btn-download'),
             subscribeLink: container.querySelector('.bl-subscribe-link'),
             subscribeUrl: container.querySelector('.bl-subscribe-url'),
+            subscribeGoogle: container.querySelector('.bl-subscribe-google'),
+            subscribeOutlook: container.querySelector('.bl-subscribe-outlook'),
+            subscribeCopyBtn: container.querySelector('.bl-subscribe-copy'),
+            subscribeCopyStatus: container.querySelector('.bl-subscribe-copy-status'),
             emptyResult: container.querySelector('.bl-empty-result'),
             daycheckBtn: container.querySelector('.bl-btn-daycheck'),
         };
@@ -792,10 +796,40 @@
                 + '&nach=' + opts.nach;
 
             var url = new URL(config.feedBase + query, window.location.href).href;
+            var webcalUrl = url.replace(/^https?:/, 'webcal:');
 
             els.subscribeUrl.value = url;
-            els.subscribeLink.href = url.replace(/^https?:/, 'webcal:');
+            els.subscribeLink.href = webcalUrl;
+
+            // Dokumentierte "von URL abonnieren"-Deeplinks der jeweiligen Anbieter - beide nehmen
+            // die webcal://-URL als Parameterwert, daher hier zwingend encodeURIComponent (der
+            // Feed-Link selbst enthält &/=, die sonst die äußere Query-String-Zerlegung stören).
+            els.subscribeGoogle.href = 'https://calendar.google.com/calendar/render?cid=' + encodeURIComponent(webcalUrl);
+            els.subscribeOutlook.href = 'https://outlook.office.com/calendar/0/addfromweb?url=' + encodeURIComponent(webcalUrl);
         }
+
+        els.subscribeCopyBtn.addEventListener('click', function () {
+            var value = els.subscribeUrl.value;
+            if (!value) { return; }
+
+            function showCopied() {
+                els.subscribeCopyStatus.hidden = false;
+                setTimeout(function () { els.subscribeCopyStatus.hidden = true; }, 2500);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(showCopied, function () {
+                    els.subscribeUrl.select();
+                });
+            } else {
+                els.subscribeUrl.select();
+                try {
+                    if (document.execCommand('copy')) { showCopied(); }
+                } catch (e) {
+                    // Kopieren nicht verfügbar - Feld bleibt markiert zum manuellen Kopieren.
+                }
+            }
+        });
 
         function slug(text) {
             return text
