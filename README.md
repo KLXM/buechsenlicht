@@ -108,17 +108,24 @@ wurde gegen die jeweils aktuelle Landesverordnung recherchiert (Stand: 2026-09-0
 App zeigt der **„Datenquellen“-Link** im oberen Banner ein Modal mit Quelle, Link und Datenstand je
 Bundesland.
 
-Zwei Einschränkungen sind dabei wichtig und werden transparent ausgewiesen:
+Drei Punkte sind dabei wichtig und werden transparent ausgewiesen:
 
-1. **Vereinfachte Klassen**: Wo eine Landesverordnung eine Wildart in mehr Alters-/Geschlechts-
+1. **Bundesrecht als Rückfall ist normal, keine Datenlücke**: Regelt ein Bundesland eine Wildart
+   nicht in seiner eigenen Verordnung (z. B. Muffelwild in Bayern, das in § 19 AVBayJG schlicht
+   nicht auftaucht), gilt automatisch die Bundesjagdzeitenverordnung (BJagdZV) weiter –
+   Landesrecht kann Bundesrecht nur ergänzen/verschärfen, nicht durch Schweigen aufheben. Diese
+   Fälle sind an der Quelle „Bundesjagdzeitenverordnung“ in Tabelle/Modal erkennbar und im
+   `hinweis`-Feld des jeweiligen Bundeslands benannt – es ist geltendes Recht, kein fehlender Wert.
+2. **Vereinfachte Klassen**: Wo eine Landesverordnung eine Wildart in mehr Alters-/Geschlechts-
    klassen aufteilt als diese App abbildet (z. B. Rotwild-Schmaltiere mit abweichenden, meist
    früheren Zeiten), wird die Hauptklasse verwendet („Hirsche und Alttiere“ o. Ä.) – vermerkt im
    `hinweis`-Feld des jeweiligen Bundeslands.
-2. **Zweitquellen bei 5 Ländern**: Die amtlichen Rechtsportale von Berlin, Mecklenburg-Vorpommern,
+3. **Zweitquellen bei 5 Ländern**: Die amtlichen Rechtsportale von Berlin, Mecklenburg-Vorpommern,
    Rheinland-Pfalz, Saarland und Schleswig-Holstein sind JavaScript-Anwendungen, die sich nicht
    automatisiert auslesen lassen. Dort stammen die Werte aus einer benannten, amtlich anerkannten
    Zweitquelle (z. B. Landesjagdverband-Übersicht) statt dem Verordnungstext selbst – im `hinweis`
-   mit „⚠“ gekennzeichnet und in `HuntingSeasons::THIRD_PARTY_SOURCES` benannt.
+   mit „⚠“ gekennzeichnet und in `HuntingSeasons::THIRD_PARTY_SOURCES` benannt. Anders als Punkt 1
+   ist das eine echte Unsicherheit (Quelle ist amtlich anerkannt, aber nicht der Originaltext).
 
 **Wartung**: Perioden werden als `["MM-DD", "MM-DD"]` hinterlegt, ein Jahreswechsel wird über
 Start > Ende codiert (z. B. `["09-01", "01-31"]` = 1. September bis 31. Januar). Änderungen

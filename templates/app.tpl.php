@@ -37,6 +37,14 @@
                 (⚠), stammen die Werte aus einer genannten, amtlich anerkannten Drittquelle statt
                 aus dem direkt gelesenen Verordnungstext.
             </p>
+            <p class="uk-text-small uk-text-muted">
+                Regelt ein Bundesland eine Wildart nicht eigenständig, gilt automatisch die
+                Bundesjagdzeitenverordnung weiter (Landesrecht kann Bundesrecht nur ergänzen oder
+                verschärfen, nicht durch Schweigen aufheben). Diese Fälle sind in der Tabelle als
+                „Bundesjagdzeitenverordnung“-Quelle erkennbar und im Hinweistext der jeweiligen
+                Wildart in der App vermerkt – es handelt sich dabei um geltendes Recht, nicht um
+                eine Datenlücke.
+            </p>
             <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-small uk-table-divider bl-sources-table">
                     <thead>

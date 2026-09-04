@@ -24,3 +24,6 @@
   Ergebnis-/Vorschlagslisten, kurzes Aufblitzen der Info-Box bei Aktualisierung), respektiert
   `prefers-reduced-motion`.
 - README komplett überarbeitet (Funktionsumfang, Einbindung, Architektur, Datenquellen).
+- Klarstellung ergänzt (Datenquellen-Modal + README): Wo eine Landesverordnung eine Wildart nicht
+  eigenständig regelt, gilt automatisch die Bundesjagdzeitenverordnung weiter - das ist geltendes
+  Recht, keine Datenlücke, im Unterschied zu den 5 Ländern mit tatsächlicher Zweitquellen-Unsicherheit.
