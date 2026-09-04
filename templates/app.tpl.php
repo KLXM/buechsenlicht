@@ -85,7 +85,7 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                 <label class="uk-form-label" for="<?= \rex_escape($instanceId) ?>-ort">Ort / Revier</label>
                 <div class="uk-form-controls bl-ort-wrap">
                     <div class="bl-ort-group">
-                        <input class="uk-input bl-ort-input" id="<?= \rex_escape($instanceId) ?>-ort" type="text" placeholder="z. B. Ratingen" autocomplete="off" readonly role="combobox" aria-expanded="false" aria-autocomplete="list">
+                        <textarea class="uk-textarea bl-ort-input" id="<?= \rex_escape($instanceId) ?>-ort" rows="1" placeholder="z. B. Ratingen" autocomplete="off" spellcheck="false" readonly role="combobox" aria-expanded="false" aria-autocomplete="list"></textarea>
                         <button class="uk-button uk-button-primary bl-btn-geocode" type="button">
                             <span class="bl-spinner" uk-spinner="ratio: 0.55" hidden></span>
                             <span class="bl-btn-geocode-label">Ort bestimmen</span>

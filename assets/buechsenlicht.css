@@ -119,6 +119,18 @@
     border-bottom-right-radius: 0;
 }
 
+/* .bl-ort-input ist ein <textarea>, per CSS wie ein einzeiliges <input> dargestellt: native
+   Adress-/Kontakt-Autofill-Vorschläge (Safari, Chrome u. a.) sind eine input-spezifische
+   Browser-Funktion und greifen bei textarea nicht - robuster als jeder autocomplete-Trick. */
+.bl-app textarea.bl-ort-input {
+    height: 40px;
+    line-height: 1.4;
+    resize: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: pre;
+}
+
 .bl-app .bl-ort-group .bl-btn-geocode {
     flex: 0 0 auto;
     white-space: nowrap;

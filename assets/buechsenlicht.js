@@ -632,7 +632,18 @@
         });
 
         els.ortInput.addEventListener('keydown', function (ev) {
-            if (els.suggestions.hidden || 0 === currentSuggestions.length) { return; }
+            // .bl-ort-input ist ein <textarea> (siehe CSS-Kommentar); Enter darf dort nie einen
+            // Zeilenumbruch einfügen, unabhängig vom Vorschlags-Dropdown.
+            if ('Enter' === ev.key) {
+                ev.preventDefault();
+            }
+
+            if (els.suggestions.hidden || 0 === currentSuggestions.length) {
+                if ('Enter' === ev.key) {
+                    els.geocodeBtn.click();
+                }
+                return;
+            }
 
             if ('ArrowDown' === ev.key) {
                 ev.preventDefault();
@@ -640,11 +651,15 @@
             } else if ('ArrowUp' === ev.key) {
                 ev.preventDefault();
                 setActiveSuggestion(Math.max(activeSuggestionIndex - 1, 0));
-            } else if ('Enter' === ev.key && activeSuggestionIndex >= 0) {
-                ev.preventDefault();
-                var hit = currentSuggestions[activeSuggestionIndex];
-                hideSuggestions();
-                applyPlace(hit);
+            } else if ('Enter' === ev.key) {
+                if (activeSuggestionIndex >= 0) {
+                    var hit = currentSuggestions[activeSuggestionIndex];
+                    hideSuggestions();
+                    applyPlace(hit);
+                } else {
+                    hideSuggestions();
+                    els.geocodeBtn.click();
+                }
             } else if ('Escape' === ev.key) {
                 hideSuggestions();
             }

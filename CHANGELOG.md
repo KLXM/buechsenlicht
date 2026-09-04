@@ -43,3 +43,9 @@
 - UIkit-3-CDN-Fallback entfernt: Das AddOn lädt UIkit 3 nicht mehr selbst nach (auch nicht bedingt
   über eine `uikit_theme_builder`-Prüfung), sondern setzt konsequent voraus, dass die Website UIkit
   3 bereits selbst einbindet.
+- Der Chrome-Fix reichte nicht für Safari: Dessen Kontakt-/Adress-Autofill matcht fortlaufend beim
+  Tippen (nicht nur beim Laden) und überdeckte den ersten eigenen Vorschlag. Robuster gelöst, indem
+  `.bl-ort-input` von `<input>` auf ein per CSS einzeilig dargestelltes `<textarea>` umgestellt
+  wurde - native Adress-Autofill-Vorschläge sind eine input-spezifische Browserfunktion und greifen
+  bei textarea in keinem Browser. Enter fügt dort keinen Zeilenumbruch mehr ein, sondern übernimmt
+  den aktiven Vorschlag bzw. löst „Ort bestimmen“ aus, wenn kein Vorschlag aktiv ist.
