@@ -60,3 +60,9 @@
   wirkt ruhiger und verträgt sich unabhängig vom Website-Theme. Betrifft: Bundesland-Erkennung,
   Kalender-Ergebnis, „keine Einträge“-Hinweis sowie beide Zustände im „Einzelnen Tag
   prüfen“-Modal. Eigene Fade-Slide-Animation durch UIkits `uk-animation-fade` ersetzt.
+- „Datenquellen“-Tabelle lief in schmalen Modal-Fenstern (v. a. mobil) rechts aus dem sichtbaren
+  Bereich. Behoben durch `table-layout: fixed` + `overflow-wrap: anywhere` auf den Zellen, damit
+  lange Quellen-/Datenstand-Texte innerhalb ihrer Spalte umbrechen. Eine breitere
+  `uk-modal-container`-Variante wurde ausprobiert, aber wieder verworfen: Bei ca. 1400px
+  Fensterbreite ragte das dann sehr breite Modal hinter die fixierte Backend-Sidebar und schnitt
+  stattdessen die erste Spalte ab - die Standardbreite plus Zeilenumbruch war die robustere Lösung.

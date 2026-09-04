@@ -78,6 +78,12 @@
    dort sind .bl-app-scoped Selektoren/Custom-Properties nicht mehr wirksam. */
 .bl-sources-table td {
     vertical-align: top;
+    overflow-wrap: anywhere;
+}
+
+.bl-sources-table {
+    table-layout: fixed;
+    width: 100%;
 }
 
 .bl-sources-table .uk-text-warning {
