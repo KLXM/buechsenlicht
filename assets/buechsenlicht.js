@@ -589,6 +589,16 @@
             activeSuggestionIndex = index;
         }
 
+        // Chrome bietet auf Feldern, die wie ein Orts-/Adressfeld aussehen (Label "Ort", Platzhalter
+        // mit Städtenamen), sein eigenes profilbasiertes Autofill an - autocomplete="off" allein wird
+        // dafür von Chrome bewusst ignoriert. "readonly bis zum ersten Fokus" verhindert zuverlässig,
+        // dass Chrome die Autofill-UI beim Laden der Seite an das Feld anhängt.
+        function enableOrtInput() {
+            els.ortInput.removeAttribute('readonly');
+        }
+        els.ortInput.addEventListener('focus', enableOrtInput, { once: true });
+        els.ortInput.addEventListener('mousedown', enableOrtInput, { once: true });
+
         els.ortInput.addEventListener('input', function () {
             var query = els.ortInput.value.trim();
             place = null;

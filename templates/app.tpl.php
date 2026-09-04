@@ -13,8 +13,14 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit-icons.min.js"></script>
 <?php endif; ?>
-<link rel="stylesheet" href="<?= \rex_escape(\rex_url::addonAssets('buechsenlicht', 'buechsenlicht.css')) ?>">
-<script src="<?= \rex_escape(\rex_url::addonAssets('buechsenlicht', 'buechsenlicht.js')) ?>" defer></script>
+<?php
+// Cache-Buster per Dateiänderungszeit: ohne das würde ein Browser die zuvor geladene assets-URL
+// (kein Versions-Query-String) auch nach einem Deploy weiter aus dem HTTP-Cache bedienen.
+$blCssMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.css'));
+$blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.js'));
+?>
+<link rel="stylesheet" href="<?= \rex_escape(\rex_url::addonAssets('buechsenlicht', 'buechsenlicht.css') . ($blCssMtime ? '?v=' . $blCssMtime : '')) ?>">
+<script src="<?= \rex_escape(\rex_url::addonAssets('buechsenlicht', 'buechsenlicht.js') . ($blJsMtime ? '?v=' . $blJsMtime : '')) ?>" defer></script>
 <?php endif; ?>
 
 <div class="bl-app" id="<?= \rex_escape($instanceId) ?>" data-bl-config="<?= \rex_escape(json_encode($config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>">
@@ -81,7 +87,7 @@
                 <label class="uk-form-label" for="<?= \rex_escape($instanceId) ?>-ort">Ort / Revier</label>
                 <div class="uk-form-controls bl-ort-wrap">
                     <div class="bl-ort-group">
-                        <input class="uk-input bl-ort-input" id="<?= \rex_escape($instanceId) ?>-ort" type="text" placeholder="z. B. Ratingen" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list">
+                        <input class="uk-input bl-ort-input" id="<?= \rex_escape($instanceId) ?>-ort" type="text" placeholder="z. B. Ratingen" autocomplete="off" readonly role="combobox" aria-expanded="false" aria-autocomplete="list">
                         <button class="uk-button uk-button-primary bl-btn-geocode" type="button">
                             <span class="bl-spinner" uk-spinner="ratio: 0.55" hidden></span>
                             <span class="bl-btn-geocode-label">Ort bestimmen</span>

@@ -32,3 +32,11 @@
   - der Abo-Link enthält Ort/Wildart/Einstellungen offen in der URL und liegt nach dem Abonnieren
   in der Kontrolle der jeweiligen Kalender-App/deren Cloud-Anbieter). Kurzhinweis dazu zusätzlich
   direkt im Abo-Bereich.
+- Chrome bot auf dem Ort-Feld sein eigenes profilbasiertes Adress-Autofill an (z. B. gespeicherte
+  Heim-/Arbeitsadresse), das `autocomplete="off"` bewusst ignoriert. Behoben über "readonly bis zum
+  ersten Fokus" (Feld startet `readonly`, JS entfernt das Attribut bei Fokus/Mousedown) - verhindert
+  zuverlässig, dass Chrome die Autofill-UI beim Laden anhängt, ohne die eigene Live-Vorschlagsliste
+  zu beeinträchtigen.
+- CSS/JS-Assets bekommen jetzt einen dateizeitbasierten Cache-Buster (`?v=<mtime>`) in den
+  `<link>`/`<script>`-URLs, damit Browser nach einem Deploy nicht versehentlich eine ältere,
+  bereits im HTTP-Cache liegende Version derselben URL weiterverwenden.
