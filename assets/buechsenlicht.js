@@ -799,7 +799,7 @@
             var webcalUrl = url.replace(/^https?:/, 'webcal:');
 
             els.subscribeUrl.value = url;
-            els.subscribeLink.href = webcalUrl;
+            els.subscribeLink.dataset.webcalUrl = webcalUrl;
 
             // Dokumentierte "von URL abonnieren"-Deeplinks der jeweiligen Anbieter - beide nehmen
             // die webcal://-URL als Parameterwert, daher hier zwingend encodeURIComponent (der
@@ -807,6 +807,12 @@
             els.subscribeGoogle.href = 'https://calendar.google.com/calendar/render?cid=' + encodeURIComponent(webcalUrl);
             els.subscribeOutlook.href = 'https://outlook.office.com/calendar/0/addfromweb?url=' + encodeURIComponent(webcalUrl);
         }
+
+        els.subscribeLink.addEventListener('click', function () {
+            var webcalUrl = els.subscribeLink.dataset.webcalUrl;
+            if (!webcalUrl) { return; }
+            window.location.href = webcalUrl;
+        });
 
         els.subscribeCopyBtn.addEventListener('click', function () {
             var value = els.subscribeUrl.value;

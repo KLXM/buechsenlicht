@@ -74,3 +74,6 @@
   erreichbaren Domain + gültigem Zertifikat funktionieren, nicht mit einer lokalen `.local`-Instanz.
 - Echte Google-/Microsoft-Logos (UIkit-Icons `google`/`microsoft`) auf den beiden Abo-Buttons statt
   reinem Textlabel.
+- „Kalender abonnieren (webcal)" ist jetzt technisch ein `<button>` statt eines `<a href="#">` (die
+  webcal-URL steckt in `data-webcal-url`, ein Klick-Handler löst die Navigation aus) - konsistent mit
+  den übrigen Aktionen der Oberfläche, die alle echte Buttons sind.

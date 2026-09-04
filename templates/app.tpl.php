@@ -202,9 +202,9 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                             der Kalender-App automatisch.
                         </p>
 
-                        <a class="bl-subscribe-link uk-button uk-button-default uk-width-1-1" href="#" rel="nofollow">
+                        <button type="button" class="bl-subscribe-link uk-button uk-button-default uk-width-1-1">
                             <span uk-icon="icon: bell"></span> Kalender abonnieren (webcal)
-                        </a>
+                        </button>
 
                         <p class="uk-text-small uk-text-muted uk-margin-small-top uk-margin-remove-bottom">
                             Unterstützt dein Kalenderprogramm <code>webcal://</code> nicht, direkt abonnieren in:
