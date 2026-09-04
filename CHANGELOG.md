@@ -72,3 +72,5 @@
   Fallback) neben dem bestehenden Klartext-Link für alle übrigen Programme. Hinweis in der README
   ergänzt, dass Google/Outlook den Feed serverseitig abrufen und daher nur mit einer öffentlich
   erreichbaren Domain + gültigem Zertifikat funktionieren, nicht mit einer lokalen `.local`-Instanz.
+- Echte Google-/Microsoft-Logos (UIkit-Icons `google`/`microsoft`) auf den beiden Abo-Buttons statt
+  reinem Textlabel.

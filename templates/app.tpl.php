@@ -209,12 +209,16 @@ $blJsMtime = @filemtime(\rex_path::addonAssets('buechsenlicht', 'buechsenlicht.j
                         <p class="uk-text-small uk-text-muted uk-margin-small-top uk-margin-remove-bottom">
                             Unterstützt dein Kalenderprogramm <code>webcal://</code> nicht, direkt abonnieren in:
                         </p>
+                        <?php /* "google"/"microsoft" stammen aus dem erweiterten Icon-Set von
+                                 uikit_theme_builder auf dieser Website, nicht aus UIkits Standard-
+                                 Icons - auf einer Website ohne dieses Set zeigt der Button dann nur
+                                 noch den Textlabel (uk-icon degradiert ohne Fehler), kein Bruch. */ ?>
                         <div class="uk-child-width-1-2 uk-grid-small uk-margin-small-top" uk-grid>
                             <div>
-                                <a class="bl-subscribe-google uk-button uk-button-default uk-width-1-1" href="#" target="_blank" rel="noopener">Google Kalender</a>
+                                <a class="bl-subscribe-google uk-button uk-button-default uk-width-1-1" href="#" target="_blank" rel="noopener"><span uk-icon="icon: google"></span> Google Kalender</a>
                             </div>
                             <div>
-                                <a class="bl-subscribe-outlook uk-button uk-button-default uk-width-1-1" href="#" target="_blank" rel="noopener">Outlook / Microsoft 365</a>
+                                <a class="bl-subscribe-outlook uk-button uk-button-default uk-width-1-1" href="#" target="_blank" rel="noopener"><span uk-icon="icon: microsoft"></span> Outlook / Microsoft 365</a>
                             </div>
                         </div>
 
